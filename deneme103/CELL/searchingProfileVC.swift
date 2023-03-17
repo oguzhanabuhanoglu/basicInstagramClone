@@ -23,6 +23,7 @@ class searchingProfileVC: UIViewController ,UICollectionViewDelegate, UICollecti
 
         // Do any additional setup after loading the view.
         
+        navigationItem.title = "Instagram"
     
     }
     

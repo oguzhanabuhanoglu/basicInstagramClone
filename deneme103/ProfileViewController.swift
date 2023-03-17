@@ -35,9 +35,11 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        
+        
         
         userProfileImage.layer.masksToBounds = true
         userProfileImage.layer.cornerRadius = userProfileImage.frame.height / 2
@@ -47,7 +49,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 120, height: 120)
         collectionView.collectionViewLayout = layout
-        layout.minimumLineSpacing = 3
+        layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
        
         
@@ -70,7 +72,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         
     }
     
-    func additionalInfoForProfile(){
+  /*  func additionalInfoForProfile(){
         
         let fd = Firestore.firestore()
         
@@ -80,7 +82,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         
       
         
-    }
+    }*/
     
     
     @objc func selectImage(){
@@ -96,6 +98,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
+        
+        
         self.userProfileImage.image = info[.originalImage] as? UIImage
         self.dismiss(animated: true, completion: nil)
         
@@ -109,11 +113,10 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileCell.identifier, for: indexPath) as! ProfileCell
         cell.imageView.sd_setImage(with: URL(string: self.collectionArray[indexPath.row].imageUrl))
-        cell.imageView.contentMode = .scaleToFill
+        cell.imageView.contentMode = .scaleAspectFit
         return cell
         
     }
-        
 
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -193,7 +196,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
       }
     
     
-    func getAllProfileInfo() {
+    
+   /* func getAllProfileInfo() {
         
         
         let fd = Firestore.firestore()
@@ -224,7 +228,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             }
     }
         
-    }
+    }*/
     
     
     
@@ -245,7 +249,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
                     for document in snapshot!.documents{
                             
                             if let username = document.get("username") as? String {
-                                self.usernameLabel.text = username
+                                self.navigationItem.title = username
         
                             
                             if let profileImageURL = document.get("profileImageUrl") as? String{
@@ -258,7 +262,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
                 
                 }
                     self.userProfileImage.reloadInputViews()
-                    self.usernameLabel.reloadInputViews()
+                   
                     
         }
     }

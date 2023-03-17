@@ -30,6 +30,8 @@ class UpdateViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = imageView.frame.width / 2
+        
+        navigationItem.title = "Instagram"
     }
     
     
