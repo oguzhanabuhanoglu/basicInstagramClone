@@ -13,7 +13,7 @@ import FirebaseAuth
 import FirebaseAnalytics
 
 
-class UpdateViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class updateVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
     @IBOutlet weak var imageView: UIImageView!

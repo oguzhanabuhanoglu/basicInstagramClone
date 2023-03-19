@@ -10,7 +10,7 @@ import FirebaseFirestore
 import FirebaseCore
 
 
-class searchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate{
+class searchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate{
     
     @IBOutlet weak var seachText: UITextField!
     @IBOutlet weak var resultTableView: UITableView!

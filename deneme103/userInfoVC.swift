@@ -11,7 +11,7 @@ import FirebaseCore
 import FirebaseStorage
 import FirebaseFirestore
 
-class profileSettingsViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class userInfoVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
     @IBOutlet weak var profileImage: UIImageView!

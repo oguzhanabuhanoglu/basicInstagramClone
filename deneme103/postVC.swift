@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-class PostViewController: UIViewController {
+class postVC: UIViewController {
     
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var postImage: UIImageView!

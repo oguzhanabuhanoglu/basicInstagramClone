@@ -10,7 +10,7 @@ import FirebaseCore
 import FirebaseAuth
 import FirebaseFirestore
 
-class ViewController: UIViewController {
+class signVC: UIViewController {
 
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passwordText: UITextField!

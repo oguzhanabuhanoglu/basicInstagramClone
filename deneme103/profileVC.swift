@@ -12,13 +12,12 @@ import FirebaseAuth
 import FirebaseStorage
 import SDWebImage
 
-class ProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class profileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-   
-    @IBOutlet weak var usernameLabel: UILabel!
+
     @IBOutlet weak var userProfileImage: UIImageView!
     @IBOutlet weak var postNumberLabel: UILabel!
     @IBOutlet weak var followedNumber: UILabel!
@@ -38,6 +37,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.edit, target: self, action: #selector(profileEdit))
+        
        
         
         
@@ -85,6 +87,11 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     }*/
     
     
+    @objc func profileEdit(){
+        performSegue(withIdentifier: "toProfileEdit", sender: nil)
+    }
+    
+    
     @objc func selectImage(){
         
         let picker = UIImagePickerController()
@@ -124,19 +131,24 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
 
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let destinationVC = segue.destination as! PostViewController
+        let destinationVC = segue.destination as! postVC
         destinationVC.selectedPost = chosenPost
     }
     
     
+   
+    
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        
         collectionView.deselectItem(at: indexPath, animated: true)
         
         chosenPost = collectionArray[indexPath.row]
         performSegue(withIdentifier: "toPostVC", sender: nil)
-    }
+    }*/
     
     
     
