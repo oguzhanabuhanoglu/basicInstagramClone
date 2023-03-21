@@ -14,6 +14,7 @@ import FirebaseFirestore
 
 class profileEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    //check
     let profileImage = UIImageView()
     let usernameText = UITextField()
     
