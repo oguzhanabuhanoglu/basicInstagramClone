@@ -12,7 +12,7 @@ import FirebaseAuth
 import FirebaseFirestore
 
 
-class profileEditVC: UIViewController {
+class profileEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     let profileImage = UIImageView()
     let usernameText = UITextField()
@@ -32,7 +32,12 @@ class profileEditVC: UIViewController {
         profileImage.layer.masksToBounds = true
         profileImage.layer.cornerRadius = profileImage.frame.width / 2
         profileImage.isUserInteractionEnabled = true
+        profileImage.isUserInteractionEnabled = true
         view.addSubview(profileImage)
+        
+        
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(selectImages))
+        profileImage.addGestureRecognizer(gestureRecognizer)
         
         
         
@@ -57,8 +62,25 @@ class profileEditVC: UIViewController {
         updateButton.addTarget(self, action: #selector(updateProfile), for: UIControl.Event.touchUpInside)
     }
     
+    @objc func selectImages(){
+        
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = .photoLibrary
+        present(picker, animated: true, completion: nil)
+        
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        profileImage.image = info[.originalImage] as? UIImage
+        self.dismiss(animated: true, completion: nil)
+        
+    }
     
     @objc func updateProfile(){
+        
+        print("update clicked")
         
         let storage = Storage.storage()
         let storageRef = storage.reference()
@@ -73,7 +95,7 @@ class profileEditVC: UIViewController {
             imageRef.putData(data) { metadata, error in
                 if error != nil {
                     
-                    self.makeAlert(title: "Error", message: error?.localizedDescription ?? "Error")
+                    self.makeAlert(titleInput: "Error", messageInput: error!.localizedDescription ?? "Error")
                 }else{
                     
                     imageRef.downloadURL { url, error in
@@ -84,16 +106,62 @@ class profileEditVC: UIViewController {
                             // FİRESTORE
                             let firestore = Firestore.firestore()
                             
-                            //firestore.collection("Pofile").whereField("username", isEqualTo: )
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
+                            firestore.collection("Profile").whereField("username", isEqualTo: UserSingleton.sharedUserInfo.username).getDocuments { snapshot, error in
+                                if error != nil {
+                                    self.makeAlert(titleInput: "Error!", messageInput: error!.localizedDescription)
+                                    
+                                }else{
+                                    
+                                    if snapshot?.isEmpty == false && snapshot != nil {
+                                        for document in snapshot!.documents{
+                                            
+                                            let documentId = document.documentID
+                                            
+                                            let chancingDictionary = ["username" : self.usernameText.text, "profileImageUrl" : imageUrl]
+                                            
+                                            
+                                            firestore.collection("Profile").document(documentId).updateData(chancingDictionary) { error in
+                                                if error != nil {
+                                                    
+                                                    self.makeAlert(titleInput: "Error!", messageInput: error!.localizedDescription ?? "Error!!")
+                                                    
+                                                    
+                                                }else{
+                                                    
+                                                    self.tabBarController?.selectedIndex = 3
+                                                    self.profileImage.image = UIImage(named: "plus")
+                                                }
+                                            }
+                                            
+                                        }
+                                    }
+                                    
+                                }
+                                
+                                firestore.collection("Posts").whereField("postedBy", isEqualTo: UserSingleton.sharedUserInfo.username).getDocuments { snapshot, error in
+                                    if error != nil {
+                                        self.makeAlert(titleInput: "Error!", messageInput: error!.localizedDescription)
+                                        
+                                    }else{
+                                        
+                                        if snapshot?.isEmpty == false && snapshot != nil {
+                                            for document in snapshot!.documents{
+                                                
+                                                let documentId = document.documentID
+                                
+                                let chancingDictionary2 = ["postedBy" : self.usernameText.text]
+                                
+                                firestore.collection("Posts").document(documentId).updateData(chancingDictionary2) { error in
+                                    if error != nil {
+                                        
+                                        self.makeAlert(titleInput: "Error!", messageInput: error!.localizedDescription ?? "Error!")
+                                    }else{
+                                        
+                                        self.tabBarController?.selectedIndex = 3
+                                        self.profileImage.image = UIImage(named: "plus")
+                                    }
+                                }
+                            }
         }
         
     }
@@ -103,10 +171,17 @@ class profileEditVC: UIViewController {
         }
     }
     
+                }}}}
     
     
     
-    
+    func makeAlert(titleInput : String, messageInput : String){
+        let alert = UIAlertController(title: titleInput, message: messageInput, preferredStyle: UIAlertController.Style.alert)
+        let okButton = UIAlertAction(title: "OK!", style: UIAlertAction.Style.default)
+        alert.addAction(okButton)
+        self.present(alert, animated: true)
+
+    }
     
     
     
