@@ -15,6 +15,7 @@ import SDWebImage
 class profileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
 
@@ -51,7 +52,7 @@ class profileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 120, height: 120)
         collectionView.collectionViewLayout = layout
-        layout.minimumLineSpacing = 0
+        layout.minimumLineSpacing = 3
         layout.minimumInteritemSpacing = 0
        
         
@@ -84,6 +85,28 @@ class profileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         
       
         
+    }*/
+    
+    
+    /*func getDataFromUserInfo(){
+        
+        firestoreDatabase.collection("userInfo").whereField("email", isEqualTo: Auth.auth().currentUser!.email!).getDocuments { snapshot, error in
+            if error != nil {
+                self.makeAlert(title: "Error", message: error?.localizedDescription ?? "Error")
+            }else{
+                
+                if snapshot?.isEmpty == false && snapshot != nil {
+                    for document in snapshot!.documents{
+                        if let username = document.get("username") as? String {
+                            
+                            UserSingleton.sharedUserInfo.email = Auth.auth().currentUser!.email!
+                            UserSingleton.sharedUserInfo.username = username
+                        
+                        }
+                    }
+                }
+            }
+        }
     }*/
     
     
