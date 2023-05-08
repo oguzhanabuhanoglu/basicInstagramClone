@@ -33,15 +33,33 @@ class profileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     
     var chosenPost : Collection?
     
+    private let itemsPerRow: CGFloat = 3
+
+    
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.edit, target: self, action: #selector(profileEdit))
+        view.backgroundColor = .systemBackground
+        collectionView.backgroundColor = .systemBackground
         
-       
+        postNumberLabel.backgroundColor = .systemBackground
+        postNumberLabel.textColor = .label
+        
+        followedNumber.backgroundColor = .systemBackground
+        followedNumber.textColor = .label
+        
+        followedNumber.backgroundColor = .systemBackground
+        followerNumber.textColor = .label
+        
+        bioLabel.backgroundColor = .systemBackground
+        bioLabel.textColor = .label
+        
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.edit, target: self, action: #selector(profileEdit))
+    
         
         
         userProfileImage.layer.masksToBounds = true
@@ -52,7 +70,7 @@ class profileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 120, height: 120)
         collectionView.collectionViewLayout = layout
-        layout.minimumLineSpacing = 3
+        layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
        
         
@@ -151,35 +169,6 @@ class profileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return collectionArray.count
-    }
-
-    
-    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        let destinationVC = segue.destination as! postVC
-        destinationVC.selectedPost = chosenPost
-    }
-    
-    
-   
-    
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        
-        collectionView.deselectItem(at: indexPath, animated: true)
-        
-        chosenPost = collectionArray[indexPath.row]
-        performSegue(withIdentifier: "toPostVC", sender: nil)
-    }*/
-    
-    
-    
-    
-    
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 90, height: 90)
     }
     
     

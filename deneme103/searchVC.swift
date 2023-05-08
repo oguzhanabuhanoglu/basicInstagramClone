@@ -21,6 +21,8 @@ class searchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .systemBackground
 
         resultTableView.delegate = self
         resultTableView.dataSource = self

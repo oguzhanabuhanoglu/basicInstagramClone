@@ -36,6 +36,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         navigationItem.title = "Instagram"
         
+        view.backgroundColor = .systemBackground
+        
         tableView.delegate = self
         tableView.dataSource = self
         

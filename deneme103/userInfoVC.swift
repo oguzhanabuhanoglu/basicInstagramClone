@@ -17,10 +17,20 @@ class userInfoVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var usernameText: UITextField!
     
+    @IBOutlet weak var continueButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .systemBackground
+        
+        usernameText.backgroundColor = .secondarySystemBackground
+        usernameText.textColor = .label
+        
+        continueButton.backgroundColor = .systemBackground
+        continueButton.tintColor = .tintColor
+        
+        profileImage.layer.masksToBounds = true
         profileImage.isUserInteractionEnabled = true
         let gestureRecognizer2 = UITapGestureRecognizer(target: self, action: #selector(selectImages2))
         profileImage.addGestureRecognizer(gestureRecognizer2)

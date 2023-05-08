@@ -16,6 +16,8 @@ class settingsVC: UIViewController {
 
         // Do any additional setup after loading the view.
         
+        view.backgroundColor = .systemBackground
+        
         navigationItem.title = "Instagram"
     }
     

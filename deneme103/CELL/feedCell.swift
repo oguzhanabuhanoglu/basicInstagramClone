@@ -17,9 +17,29 @@ class feedCell: UITableViewCell {
     @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var documentIDLabel: UILabel!
     
+    @IBOutlet weak var likeButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        contentView.backgroundColor = .systemBackground
+        
+        userEmailLabel.backgroundColor = .systemBackground
+        userEmailLabel.textColor = .label
+        
+        commentLabel.backgroundColor = .systemBackground
+        commentLabel.textColor = .label
+        
+        userImageView.backgroundColor = .systemBackground
+        
+        likeLabel.backgroundColor = .systemBackground
+        likeLabel.textColor = .label
+        
+        likeButton.backgroundColor = .systemBackground
+        likeButton.tintColor = .tintColor
+        
+        
     }
     
     

@@ -81,7 +81,6 @@ class profileEditVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     
     @objc func updateProfile(){
         
-        print("update clicked")
         
         let storage = Storage.storage()
         let storageRef = storage.reference()

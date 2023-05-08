@@ -19,10 +19,22 @@ class updateVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var commentText: UITextField!
     
+    @IBOutlet weak var updateButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        view.backgroundColor = .systemBackground
+        
+        imageView.backgroundColor = .systemBackground
+        
+        commentText.backgroundColor = .systemBackground
+        commentText.textColor = .label
+        
+        updateButton.backgroundColor = .systemBackground
+        updateButton.titleLabel?.tintColor = .tintColor
         
         imageView.isUserInteractionEnabled = true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(selectImages))

@@ -14,11 +14,27 @@ class signVC: UIViewController {
 
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
+    @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var logInButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         navigationItem.title = "Instagram"
+        view.backgroundColor = .systemBackground
+        
+        emailText.backgroundColor = .secondarySystemBackground
+        emailText.textColor = .label
+        
+        passwordText.backgroundColor = .secondarySystemBackground
+        passwordText.textColor = .label
+        
+        signInButton.backgroundColor = .systemBackground
+        signInButton.titleLabel?.tintColor = .tintColor
+        
+        logInButton.backgroundColor = .systemBackground
+        logInButton.titleLabel?.tintColor = .tintColor
+        
     }
     
     
