@@ -13,30 +13,86 @@ import FirebaseFirestore
 
 class userInfoVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    private let profileImage : UIImageView = {
+        let imageView = UIImageView()
+        imageView.layer.masksToBounds = true
+        imageView.image = UIImage(systemName: "plus.circle")
+        imageView.tintColor = .label
+        imageView.backgroundColor = .systemBackground
+        imageView.layer.borderWidth = 1
+        imageView.layer.borderColor = UIColor.secondarySystemBackground.cgColor
+        imageView.contentMode = .scaleAspectFill
+        imageView.isUserInteractionEnabled = true
+        return imageView
+    }()
     
-    @IBOutlet weak var profileImage: UIImageView!
-    @IBOutlet weak var usernameText: UITextField!
+    private let usernameText : UITextField = {
+        let textfield = UITextField()
+        textfield.placeholder = "Username"
+        textfield.backgroundColor = .secondarySystemBackground
+        textfield.textColor = .label
+        textfield.layer.cornerRadius = 10
+        return textfield
+    }()
     
-    @IBOutlet weak var continueButton: UIButton!
+    private let biografiText : UITextField = {
+        let textfield = UITextField()
+        textfield.placeholder = "Biografi"
+        textfield.backgroundColor = .secondarySystemBackground
+        textfield.textColor = .label
+        textfield.layer.cornerRadius = 10
+        return textfield
+    }()
+    
+    private let continueButton : UIButton = {
+        let button = UIButton()
+        button.setTitle("Next", for: UIControl.State.normal)
+        button.backgroundColor = .secondarySystemBackground
+        button.setTitleColor(UIColor.label, for: UIControl.State.normal)
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 20
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.label.cgColor
+        return button
+    }()
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .systemBackground
+        navigationItem.title = "Create your profile"
         
-        usernameText.backgroundColor = .secondarySystemBackground
-        usernameText.textColor = .label
+        view.addSubview(profileImage)
+        view.addSubview(usernameText)
+        view.addSubview(continueButton)
+        view.addSubview(biografiText)
         
-        continueButton.backgroundColor = .systemBackground
-        continueButton.tintColor = .tintColor
         
-        profileImage.layer.masksToBounds = true
-        profileImage.isUserInteractionEnabled = true
         let gestureRecognizer2 = UITapGestureRecognizer(target: self, action: #selector(selectImages2))
         profileImage.addGestureRecognizer(gestureRecognizer2)
         
     }
     
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        let widht = view.frame.size.width
+        let height = view.frame.size.height
+        
+        profileImage.frame = CGRect(x: widht * 0.5 - 160/2, y: height * 0.29 - 160 / 2, width: 150, height: 150)
+        profileImage.layer.cornerRadius = profileImage.frame.width / 2
+        
+        usernameText.frame = CGRect(x: widht * 0.5 - widht * 0.4, y: height * 0.43 - 40/2, width: widht * 0.8, height: 40)
+        
+        biografiText.frame = CGRect(x: widht * 0.5 - widht * 0.4, y: height * 0.50 - 40/2, width: widht * 0.8, height: 40)
+        
+        continueButton.frame = CGRect(x: widht * 0.5 - widht * 0.45, y: height * 0.60 - 40/2, width: widht * 0.9, height: 40)
+        continueButton.addTarget(self, action: #selector(continueButtonClicked), for: UIControl.Event.touchUpInside)
+    }
     
     
     func makeAlert(tittleInput: String , messageInput: String){
@@ -66,7 +122,7 @@ class userInfoVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     
     
     
-    @IBAction func continueButton(_ sender: Any) {
+    @objc func continueButtonClicked() {
         
         let storage = Storage.storage()
         let storageRef = storage.reference()
@@ -99,7 +155,7 @@ class userInfoVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
                             var firestoreRefence : DocumentReference? = nil
                             
                             
-                            let userProfile = ["username" : self.usernameText.text! , "profileImageUrl" : profileImageUrl, "email" : Auth.auth().currentUser!.email!] as [String : Any]
+                            let userProfile = ["username" : self.usernameText.text! , "profileImageUrl" : profileImageUrl, "biografi" : self.biografiText.text!, "email" : Auth.auth().currentUser!.email!] as [String : Any]
                             
                             
                             firestoreRefence = firestoreDatabase.collection("Profile").addDocument(data: userProfile, completion: { error in

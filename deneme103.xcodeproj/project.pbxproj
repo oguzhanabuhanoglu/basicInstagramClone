@@ -19,7 +19,7 @@
 		BF6384DA28C94E2900A71438 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF6384D828C94E2900A71438 /* LaunchScreen.storyboard */; };
 		BF6384E228C953E500A71438 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF6384E128C953E500A71438 /* GoogleService-Info.plist */; };
 		BF6384E428C95A5B00A71438 /* settingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6384E328C95A5B00A71438 /* settingsVC.swift */; };
-		BF6384E628C95A6C00A71438 /* updateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6384E528C95A6C00A71438 /* updateVC.swift */; };
+		BF6384E628C95A6C00A71438 /* sharePostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6384E528C95A6C00A71438 /* sharePostVC.swift */; };
 		BF6384E828C95A8B00A71438 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6384E728C95A8B00A71438 /* FeedViewController.swift */; };
 		BF9CC98229C7954700BE2B56 /* profileEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9CC98129C7954700BE2B56 /* profileEditVC.swift */; };
 		BFAA9E9B295DBE610026032A /* postVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAA9E9A295DBE610026032A /* postVC.swift */; };
@@ -50,7 +50,7 @@
 		BF6384DB28C94E2900A71438 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF6384E128C953E500A71438 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BF6384E328C95A5B00A71438 /* settingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsVC.swift; sourceTree = "<group>"; };
-		BF6384E528C95A6C00A71438 /* updateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = updateVC.swift; sourceTree = "<group>"; };
+		BF6384E528C95A6C00A71438 /* sharePostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sharePostVC.swift; sourceTree = "<group>"; };
 		BF6384E728C95A8B00A71438 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		BF9CC98129C7954700BE2B56 /* profileEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profileEditVC.swift; sourceTree = "<group>"; };
 		BFAA9E9A295DBE610026032A /* postVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = postVC.swift; sourceTree = "<group>"; };
@@ -130,9 +130,9 @@
 				BF6384D128C94E2800A71438 /* signVC.swift */,
 				BF533BEC2922CC2E00D177C0 /* userInfoVC.swift */,
 				BFF34D2B2919439800521DAD /* profileVC.swift */,
+				BF6384E528C95A6C00A71438 /* sharePostVC.swift */,
 				BF6384E728C95A8B00A71438 /* FeedViewController.swift */,
 				BF533BEE2922E4C200D177C0 /* searchVC.swift */,
-				BF6384E528C95A6C00A71438 /* updateVC.swift */,
 				BF6384E328C95A5B00A71438 /* settingsVC.swift */,
 				BFAA9E9A295DBE610026032A /* postVC.swift */,
 				BF41D2E52964545800310290 /* searchingProfileVC.swift */,
@@ -307,7 +307,7 @@
 				BF533BED2922CC2E00D177C0 /* userInfoVC.swift in Sources */,
 				BF6384E828C95A8B00A71438 /* FeedViewController.swift in Sources */,
 				BFF34D2C2919439800521DAD /* profileVC.swift in Sources */,
-				BF6384E628C95A6C00A71438 /* updateVC.swift in Sources */,
+				BF6384E628C95A6C00A71438 /* sharePostVC.swift in Sources */,
 				BFF34D312919541C00521DAD /* ProfileCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

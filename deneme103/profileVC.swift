@@ -275,12 +275,16 @@ class profileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
                             if let username = document.get("username") as? String {
                                 self.navigationItem.title = username
         
+                            if let bio = document.get("biografi") as? String {
+                                    self.bioLabel.text = bio
+                            }
                             
                             if let profileImageURL = document.get("profileImageUrl") as? String{
                                 self.userProfileImage.sd_setImage(with: URL(string: profileImageURL))
                             }else{
                                 self.userProfileImage.image = UIImage(named: "plusImage")
                             }
+                                
             
                     }
                 
