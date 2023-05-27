@@ -133,10 +133,10 @@
 				BF6384E528C95A6C00A71438 /* sharePostVC.swift */,
 				BF6384E728C95A8B00A71438 /* FeedViewController.swift */,
 				BF533BEE2922E4C200D177C0 /* searchVC.swift */,
-				BF6384E328C95A5B00A71438 /* settingsVC.swift */,
 				BFAA9E9A295DBE610026032A /* postVC.swift */,
 				BF41D2E52964545800310290 /* searchingProfileVC.swift */,
 				BF9CC98129C7954700BE2B56 /* profileEditVC.swift */,
+				BF6384E328C95A5B00A71438 /* settingsVC.swift */,
 			);
 			name = VC;
 			sourceTree = "<group>";

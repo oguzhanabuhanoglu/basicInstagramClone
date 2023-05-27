@@ -21,24 +21,23 @@ class sharePostVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
         imageView.image = UIImage(named: "newPost")
         imageView.tintColor = .label
         imageView.backgroundColor = .systemBackground
-        imageView.layer.borderWidth = 1
-        imageView.layer.borderColor = UIColor.secondarySystemBackground.cgColor
         imageView.isUserInteractionEnabled = true
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
     private let commentText : UITextField = {
         let textfield = UITextField()
         textfield.placeholder = "Comment..."
-        textfield.backgroundColor = .label
+        textfield.backgroundColor = .secondarySystemBackground
         textfield.textColor = .label
         textfield.layer.cornerRadius = 10
         return textfield
     }()
     
-    private let shareButton : UIButton = {
+    private let uploadButton : UIButton = {
         let button = UIButton()
-        button.setTitle("Share", for: UIControl.State.normal)
+        button.setTitle("Upload", for: UIControl.State.normal)
         button.backgroundColor = .secondarySystemBackground
         button.setTitleColor(UIColor.label, for: UIControl.State.normal)
         button.layer.masksToBounds = true
@@ -59,11 +58,12 @@ class sharePostVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
     
         view.addSubview(postImageView)
         view.addSubview(commentText)
-        view.addSubview(shareButton)
+        view.addSubview(uploadButton)
         
         postImageView.isUserInteractionEnabled = true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(selectImages))
         postImageView.addGestureRecognizer(gestureRecognizer)
+        
         
         
         
@@ -72,15 +72,17 @@ class sharePostVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        
         let widht = view.frame.size.width
         let height = view.frame.size.height
         
         postImageView.frame = CGRect(x: widht * 0.5 - (widht * 0.9) / 2 , y: height * 0.33 - (height * 0.4)/2 , width: widht * 0.9, height: height * 0.4)
         
-        commentText.frame = CGRect(x: widht * 0.5 * (widht * 0.9) / 2, y: height * 0.75 - 15, width: widht * 0.9, height: 30)
+        commentText.frame = CGRect(x: widht * 0.5 - (widht * 0.9) / 2, y: height * 0.57 - 50/2, width: widht * 0.9, height: 50)
         
-        shareButton.frame = CGRect(x: widht * 0.5 * (widht * 0.8) / 2, y: height * 0.9 - 35/2, width: widht * 0.8, height: 35)
-        shareButton.addTarget(self, action: #selector(updateClicked), for: UIControl.Event.touchUpInside)
+        uploadButton.frame = CGRect(x: widht * 0.5 - (widht * 0.8) / 2, y: height * 0.7 - 35/2, width: widht * 0.8, height: 35)
+        uploadButton.addTarget(self, action: #selector(updateClicked), for: UIControl.Event.touchUpInside)
+        
     }
     
     
@@ -113,8 +115,7 @@ class sharePostVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
 
     @objc func updateClicked() {
         
-        
-        
+
         let storage = Storage.storage()
         let storageRef = storage.reference()
         

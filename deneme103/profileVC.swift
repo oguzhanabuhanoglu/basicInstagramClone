@@ -58,10 +58,6 @@ class profileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         bioLabel.textColor = .label
         
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.edit, target: self, action: #selector(profileEdit))
-    
-        
-        
         userProfileImage.layer.masksToBounds = true
         userProfileImage.layer.cornerRadius = userProfileImage.frame.height / 2
         userProfileImage.clipsToBounds = true
@@ -73,6 +69,7 @@ class profileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
        
+        
         
         
         collectionView.register(ProfileCell.nib(), forCellWithReuseIdentifier: ProfileCell.identifier)
@@ -127,10 +124,7 @@ class profileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         }
     }*/
     
-    
-    @objc func profileEdit(){
-        performSegue(withIdentifier: "toProfileEdit", sender: nil)
-    }
+  
     
     
     @objc func selectImage(){
@@ -281,6 +275,7 @@ class profileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
                             
                             if let profileImageURL = document.get("profileImageUrl") as? String{
                                 self.userProfileImage.sd_setImage(with: URL(string: profileImageURL))
+                                UserSingleton.sharedUserInfo.profilePhoto = profileImageURL
                             }else{
                                 self.userProfileImage.image = UIImage(named: "plusImage")
                             }

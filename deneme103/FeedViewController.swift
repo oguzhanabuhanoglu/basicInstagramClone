@@ -137,9 +137,11 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath  ) as! feedCell
-        cell.userEmailLabel.text = postArray[indexPath.row].postedBy
+        cell.usernameLabel.text = postArray[indexPath.row].postedBy
         cell.commentLabel.text = postArray[indexPath.row].postComment
         cell.userImageView.sd_setImage(with: URL(string: self.postArray[indexPath.row].imageUrl))
+        cell.profileImage.sd_setImage(with: URL(string: UserSingleton.sharedUserInfo.profilePhoto))
+        cell.likeCountLabel.text = String(postArray[indexPath.row].like)
         cell.documentIDLabel.text = postArray[indexPath.row].documentId
         return cell
     }
@@ -153,6 +155,9 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.present(alert, animated: true, completion: nil)
     }
 
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return view.frame.size.height * 0.70
+    }
     
     
     

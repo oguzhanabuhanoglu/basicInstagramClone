@@ -11,59 +11,131 @@ import FirebaseFirestore
 
 class feedCell: UITableViewCell {
 
-    @IBOutlet weak var userEmailLabel: UILabel!
-    @IBOutlet weak var commentLabel: UILabel!
-    @IBOutlet weak var userImageView: UIImageView!
-    @IBOutlet weak var likeLabel: UILabel!
-    @IBOutlet weak var documentIDLabel: UILabel!
     
-    @IBOutlet weak var likeButton: UIButton!
+    static let identifier = "challangeCell"
     
+    
+     let profileImage : UIImageView = {
+       let image = UIImageView()
+        image.contentMode = .scaleAspectFill
+        image.layer.masksToBounds = true
+        image.backgroundColor = .systemBackground
+        image.image = UIImage(named: "newPost")
+        return image
+    }()
+     
+    let usernameLabel : UILabel = {
+       let label = UILabel()
+        label.backgroundColor = .systemBackground
+        label.textAlignment = .left
+        label.textColor = .label
+        return label
+    }()
+    
+    let commentLabel : UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .systemBackground
+        label.numberOfLines = 3
+        label.text = "spor challangenı kasdfhgdfghdfgjdfhjgdklsşfghmsdlfhgsdnfglhjdnsfşhlkjsdnfhşskdlfhşsdfljhndsşfjlh"
+        label.font = UIFont.boldSystemFont(ofSize: 15)
+        label.textColor = .label
+        return label
+    }()
+    
+    let userImageView : UIImageView = {
+        let image = UIImageView()
+        image.backgroundColor = .systemBackground
+        image.contentMode = .scaleAspectFill
+        image.image = UIImage(named: "sisifos")
+        return image
+    }()
+    
+    let likeButton : UIButton = {
+        let button = UIButton()
+        let config = UIImage.SymbolConfiguration(pointSize: 27, weight: UIImage.SymbolWeight.regular)
+        let image = UIImage(systemName: "heart", withConfiguration: config)
+        button.setImage(image, for: UIControl.State.normal)
+        button.backgroundColor = .systemBackground
+        button.tintColor = .label
+        return button
+    }()
+    
+    
+    let likeCountLabel : UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .systemBackground
+        label.textAlignment = .right
+        label.textColor = .label
+        label.text = "120"
+        return label
+    }()
+   
+    let documentIDLabel : UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .systemBackground
+        label.textColor = .systemBackground
+        return label
+    }()
+    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
+        contentView.clipsToBounds = true
         contentView.backgroundColor = .systemBackground
         
-        userEmailLabel.backgroundColor = .systemBackground
-        userEmailLabel.textColor = .label
+       
+        contentView.addSubview(usernameLabel)
+        contentView.addSubview(commentLabel)
+        contentView.addSubview(userImageView)
+        contentView.addSubview(likeButton)
+        contentView.addSubview(profileImage)
+        contentView.addSubview(likeCountLabel)
+        contentView.addSubview(documentIDLabel)
         
-        commentLabel.backgroundColor = .systemBackground
-        commentLabel.textColor = .label
+        likeButton.addTarget(self, action: #selector(likeButtonClicked), for: UIControl.Event.touchUpInside)
         
-        userImageView.backgroundColor = .systemBackground
         
-        likeLabel.backgroundColor = .systemBackground
-        likeLabel.textColor = .label
+    }
+
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
         
-        likeButton.backgroundColor = .systemBackground
-        likeButton.tintColor = .tintColor
+        let widht = contentView.frame.size.width
+        let height = contentView.frame.size.height
+        
+
+        
+        profileImage.frame = CGRect(x: widht * 0.08 - (height * 0.10) / 2, y: height * 0.09 - (height * 0.10) / 2, width: height * 0.08, height: height * 0.08)
+        profileImage.layer.cornerRadius =  profileImage.frame.height / 2
+        
+        usernameLabel.frame = CGRect(x: widht * 0.45 - (widht * 0.56) / 2, y: height * 0.08 - (height * 0.06) / 2, width: widht * 0.56, height: height * 0.06)
+        
+        commentLabel.frame = CGRect(x: widht * 0.5 - (widht * 0.98) / 2, y: height * 0.82 - (height * 0.065) / 2 , width: widht * 0.98, height: height * 0.19)
+        
+        userImageView.frame = CGRect(x: widht * 0.5 - (widht * 0.95) / 2, y: height * 0.46 - (height * 0.62) / 2, width: widht * 0.95, height: height * 0.62)
+        
+        likeButton.frame = CGRect(x: widht * 0.05 - (height * 0.08) / 2, y: height * 0.82 - (height * 0.08) / 2, width: height * 0.065, height: height * 0.063)
+        
+        likeCountLabel.frame = CGRect(x: widht * 0.9 - (widht * 0.2) / 2, y: height * 0.82 - (height * 0.063) / 2, width: widht * 0.2, height: height * 0.063)
+        
+        documentIDLabel.frame = CGRect(x: widht * 0.5 - (widht * 0.2) / 2, y: height * 0.82 - (height * 0.063) / 2, width: widht * 0.2, height: height * 0.063)
         
         
     }
     
-    
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    @IBAction func likeButtonClicked(_ sender: Any) {
+    @objc func likeButtonClicked(){
         
-    
-        let firestoreDatabase = Firestore.firestore()
+        let fd = Firestore.firestore()
         
-        if let likeCount = Int(likeLabel.text!){
+        if let likeCount = Int(likeCountLabel.text!) {
             
-            let likeStore = ["like" : likeCount + 1] as [String : Any]
+            let likeStore = ["likes" : likeCount + 1] as [String : Any]
             
-            firestoreDatabase.collection("Posts").document(documentIDLabel.text!).setData(likeStore, merge: true)
-            
+            fd.collection("Posts").document(documentIDLabel.text!).setData(likeStore, merge: true)
         }
-        
-        
-        
         
     }
     

@@ -18,6 +18,8 @@ class ProfileCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
     }
     
     
@@ -26,6 +28,11 @@ class ProfileCell: UICollectionViewCell {
         imageView.sd_setImage(with: url)
     }
     
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        imageView.frame = contentView.bounds
+    }
     
     static func nib() -> UINib{
         return UINib(nibName: "ProfileCell", bundle: nil)

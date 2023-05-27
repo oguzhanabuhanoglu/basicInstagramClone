@@ -12,4 +12,5 @@ struct Collection{
     var imageUrl : String
     var postedBy : String
     var postComment : String
+    
 }

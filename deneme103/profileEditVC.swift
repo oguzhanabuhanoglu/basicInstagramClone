@@ -17,23 +17,27 @@ class profileEditVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     //check
     let profileImage = UIImageView()
     let usernameText = UITextField()
+    let biografiText = UITextField()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .black
+        view.backgroundColor = .systemBackground
         
         let widht = view.frame.size.width
         let height = view.frame.size.height
 
         
         profileImage.frame = CGRect(x: widht * 0.5 - 150/2, y: height * 0.19 - 150 / 2, width: 150, height: 150)
-        profileImage.image = UIImage(named: "plus")
-        profileImage.backgroundColor = .black
+        profileImage.image = UIImage(systemName: "plus.circle")
+        profileImage.backgroundColor = .systemBackground
         profileImage.layer.masksToBounds = true
         profileImage.layer.cornerRadius = profileImage.frame.width / 2
+        profileImage.contentMode = .scaleToFill
+        profileImage.tintColor = .label
         profileImage.isUserInteractionEnabled = true
-        profileImage.isUserInteractionEnabled = true
+        profileImage.layer.borderWidth = 1
+        profileImage.layer.borderColor = UIColor.label.cgColor
         view.addSubview(profileImage)
         
         
@@ -45,19 +49,28 @@ class profileEditVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         //USERNAME TEXT FİELD
         usernameText.frame = CGRect(x: widht * 0.5 - widht * 0.4, y: height * 0.35 - 33/2, width: widht * 0.8, height: 33)
         usernameText.placeholder = "Username"
-        usernameText.backgroundColor = .white
-        usernameText.textColor = .black
+        usernameText.backgroundColor = .secondarySystemBackground
+        usernameText.textColor = .label
         view.addSubview(usernameText)
+        
+        //BİOGRAFİ TEXT
+        biografiText.frame = CGRect(x: widht * 0.5 - widht * 0.4, y: height * 0.41 - 33/2, width: widht * 0.8, height: 33)
+        biografiText.placeholder = "Biografi"
+        biografiText.backgroundColor = .secondarySystemBackground
+        biografiText.textColor = .label
+        view.addSubview(biografiText)
         
         
         //NEXT BUTTON
         let updateButton = UIButton()
-        updateButton.frame = CGRect(x: widht * 0.5 - widht * 0.45, y: height * 0.45 - 40/2, width: widht * 0.9, height: 40)
+        updateButton.frame = CGRect(x: widht * 0.5 - widht * 0.45, y: height * 0.50 - 40/2, width: widht * 0.9, height: 40)
         updateButton.setTitle("Update", for: UIControl.State.normal)
-        updateButton.backgroundColor = .tertiaryLabel
-        updateButton.setTitleColor(UIColor.systemPurple, for: UIControl.State.normal)
+        updateButton.backgroundColor = .secondarySystemBackground
+        updateButton.setTitleColor(UIColor.label, for: UIControl.State.normal)
         updateButton.layer.masksToBounds = true
         updateButton.layer.cornerRadius = 20
+        updateButton.layer.borderColor = UIColor.label.cgColor
+        updateButton.layer.borderWidth = 1
         view.addSubview(updateButton)
         
         updateButton.addTarget(self, action: #selector(updateProfile), for: UIControl.Event.touchUpInside)
